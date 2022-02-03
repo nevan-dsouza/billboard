@@ -99,7 +99,7 @@ function renderTrackList(countryName) {
 
 
 
-console.log(resultTextEl);
+// console.log(resultTextEl);
 
 function printResults(resultObj) {
   console.log(resultObj);

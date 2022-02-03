@@ -1,5 +1,5 @@
 //  Declarations
-var songSearch = $("#song").val();
+// var songSearch = $("#song").val();
 var requestUrl = "https://youtube.googleapis.com/youtube/v3/search?part=snippet";
 var testRequest = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=AIzaSyCRZy3dTHCrHziFGy-k-XHY9AkNrvd8a_k";
 let APIkey = 'AIzaSyCRZy3dTHCrHziFGy-k-XHY9AkNrvd8a_k';
@@ -69,5 +69,5 @@ function displayVideo(video, videoID){
 
 
 // Calling
-refinedSearch(songSearch);
+// refinedSearch(songSearch);
 // youtubeSearch(testRequest);
