@@ -8,10 +8,14 @@ var videos = $()
 
 // Functions
 // Search Manipulation Function
-function refinedSearch(search){
+function refinedSearch(event){
+    let search = event.target.textContent;
     let searchList = search.split(' ');
     console.log(searchList); 
     let song = '';
+
+    clearList($('.youtube-video-container'));
+
     for (let i = 0; i<searchList.length; i++){
         song+=searchList[i];
     }
