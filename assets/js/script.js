@@ -1,21 +1,28 @@
-apiKey = "7d39cdb41223669ba391f5da5b386dc7";
+var idarray = [];
+var super_array = [];
+var resultTextEl = document.querySelector('#result-text');
+var resultContentEl = document.querySelector('#result-content');
+var lastCountry = localStorage.getItem("last_country");
 
 // This function clears a list of child elements within an element
 function clearList(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    console.log(element);
+    console.log(element.children.length);
+    while (element[0].firstChild) {
+        element[0].firstChild.remove();
     }
+    console.log(element.children.length);
     console.log("List cleared!");
 }
 
 // Load last country from local storage
-let lastCountry = localStorage.getItem("last_country");
+
 if (!lastCountry) {
     lastCountry = "";
 }
 
 function findCodeByCountry(countryName) {
-    let foundCountry = country.find(function (el) {
+    var foundCountry = country.find(function (el) {
         return el.name.toLowerCase() === countryName.toLowerCase();
         });
     if (foundCountry !== undefined) {
@@ -29,7 +36,7 @@ function findCodeByCountry(countryName) {
 // Function that populates search box with a list of countries
 $(document).ready(function() {
     $(country).each(function(index, item) {
-        let option = $('<option value=" '+item.name+' "></option>');
+        var option = $('<option value=" '+item.name+' "></option>');
         $('#countries').append(option);
     });
 });
@@ -47,9 +54,9 @@ function handleSubmit(event) {
     event.preventDefault();
 
     // Get country's name from the search bar
-    let countryName = $("#input-country").val().trim();
+    var countryName = $("#input-country").val().trim();
 
-    clearList($("#track-names"));
+    // clearList($("#result-content"));
     // Turns search box empty after submitting
     $("#input-country").val("");
     // Add the country to our search history
@@ -59,32 +66,74 @@ function handleSubmit(event) {
 }
 
 function renderTrackList(countryName) {
-    let countryCode = findCodeByCountry(countryName);
-    let topTracksURL = "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=hot&page=1&page_size=20&f_has_lyrics=1&apikey=" + apiKey + "&country=" + countryCode
+    var countryCode = findCodeByCountry(countryName);
+  
 
-    clearList($("#track-names"));
+    clearList($("#result-content"));
 
     if (countryName === "invalid") {
         return console.log("No valid country!");
     }
+    
 
-    fetch(topTracksURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log("MusiXMatch API Fetch Response for " + countryName + " \n-------------");
-            console.log(data);
+    // fetch request gets a list of all the repos for the node.js organization
+    var requestUrl = "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=20&country=" + countryCode + "&f_has_lyrics=1&apikey=360b2a0f11a6cde52497da911bf19fb1";
+    
+  
+    fetch(requestUrl, { mode: 'cors',
+    "Access-Control-Allow-Origin" : "*"})
+  
+   
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        console.log(data.message.body.track_list[0].track.track_name);
+        var idarray = [];
+        for (var i = 0; i < 20; i++) {
+          printResults(data.message.body.track_list[i].track);
+        }
+  });
+}
 
-            // This creates list items using fetched data
-            $(document).ready(function() {
-                $(data.message.body.track_list).each(function(index, item) {
-                    let listItem = $("<li>" + item.track.track_name + "</li>");
-                    $('#track-names').append(listItem);
-                });
-            });
-            // $("#track-name").text(data.message.body.track_list[0].track.track_name);
-        })
+
+
+console.log(resultTextEl);
+
+function printResults(resultObj) {
+  console.log(resultObj);
+
+  // set up `<div>` to hold result content
+  var resultCard = document.createElement('div');
+  var resultBody = document.createElement('div');
+  var titleEl = document.createElement('h3');
+  var bodyContentEl = document.createElement('p');
+  var linkButtonEl = document.createElement('a');
+
+
+  resultCard.classList.add('cardcustom');
+
+  resultBody.classList.add('cardcustombody');
+  resultCard.append(resultBody);
+
+  titleEl.textContent = resultObj.track_name;
+
+  bodyContentEl.innerHTML =
+    '<strong>Artist:</strong> ' + resultObj.artist_name + '<br/>';
+
+  if (resultObj.album_name) {
+    bodyContentEl.innerHTML +=
+      '<strong>Album Name:</strong> ' + resultObj.album_name + '<br/>';
+  }
+
+  linkButtonEl.textContent = 'Lyrics';
+  linkButtonEl.setAttribute('href', resultObj.track_share_url);
+  linkButtonEl.classList.add('btncustom');
+
+  resultBody.append(titleEl, bodyContentEl, linkButtonEl);
+
+  resultContentEl.append(resultCard);
 }
 
 console.log(findCodeByCountry("Afghanistan"));
