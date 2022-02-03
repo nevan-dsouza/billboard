@@ -99,7 +99,7 @@ function renderTrackList(countryName) {
 
 
 
-console.log(resultTextEl);
+// console.log(resultTextEl);
 
 function printResults(resultObj) {
   console.log(resultObj);
@@ -118,6 +118,7 @@ function printResults(resultObj) {
   resultCard.append(resultBody);
 
   titleEl.textContent = resultObj.track_name;
+  titleEl.addEventListener('click', refinedSearch);
 
   bodyContentEl.innerHTML =
     '<strong>Artist:</strong> ' + resultObj.artist_name + '<br/>';

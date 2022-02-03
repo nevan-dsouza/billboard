@@ -1,32 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./assets/css/style.css"/> -->
-    <title>Search Top Music</title>
-</head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
 
-<body>
+        <title>MusiXMatch</title>
+    </head>
 
-    <form class="(insert classes here)" id="search-form">
-        <input list="countries" class="nothing" id="input-country" placeholder="Canada">
-        <datalist id="countries">
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <div class="navbar-start">
+                    <a class="logo" href="#search-form">
+                        Billboard
+                    </a>
+                </div>
+            
+        
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+            </div>
+        
+            <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end menu">
+                <a class="navbar-item">
+                charts
+                </a>
+        
+                <a class="navbar-item">
+                lyrics
+                </a>
+        
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                    About
+                    </a>
+                    <a class="navbar-item">
+                    Jobs
+                    </a>
+                    <a class="navbar-item">
+                    Contact
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                    Report an issue
+                    </a>
+                </div>
+                </div>
+            </div>
+            </div>
+        </nav>
 
-        </datalist>
-        <button type="submit" class="nothing"><span class="fas fa-search"></span></button>
-    </form>
+        <!-- Search Bar -->
+        <form class="(insert classes here)" id="search-form">
+            <input list="countries" class="nothing" id="input-country" placeholder="Canada">
+            <datalist id="countries">
+    
+            </datalist>
+            <button type="submit" class="nothing"><span class="fas fa-search"></span></button>
+        </form>
 
-    <div id="result-content"></div>
+        <!-- <form action="#" id="form"></form>
+            <div id="artist-search">
+                <input type="text" placeholder="search song" id="song">
+            </div>
+        </form> -->
 
-    <script src="https://kit.fontawesome.com/d3f55370ae.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="./assets/js/country.js"></script>
-    <script src="./assets/js/script.js"></script>
-</body>
+        <!-- YouTube Video Display -->
+        <section class="youtube-video-container"></section>
+
+        <!-- Search Result Display -->
+        <div id="result-content"></div>
+
+
+
+
+
+
+
+        <script src="https://kit.fontawesome.com/d3f55370ae.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="./assets/js/country.js"></script>
+        <script src="./assets/js/top-hits.js"></script>
+        <script src="./assets/js/script.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+        
+    </body>
+    
 
 </html>
