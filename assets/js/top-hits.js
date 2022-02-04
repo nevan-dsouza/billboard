@@ -11,14 +11,13 @@ var videos = $()
 function refinedSearch(event){
 
     //get the value from the event.target.textContent
-    let search=event.target.textContent
+    let search = event.target.textContent
 
     let searchList = search.split(' ');
     console.log(searchList); 
     let song = '';
 
     clearList($('.youtube-video-container'));
-
 
     for (let i = 0; i<searchList.length; i++){
         song+=searchList[i];
@@ -64,7 +63,7 @@ function displayVideo(video, videoID){
         videoContainer.innerHTML += `
 
         <div class="video-display">
-        <a href="https://www.youtube.com/watch?v=${videoID}"><img src= "${video.snippet.thumbnails.medium.url}" height="315" width="420"></img></a>
+        <a href="https://www.youtube.com/watch?v=${videoID}"><img src= "${video.snippet.thumbnails.medium.url}" height="450" width="600"></img></a>
         <figcaption>${video.snippet.title}</figcaption>
         </div>
         `;
@@ -74,5 +73,4 @@ function displayVideo(video, videoID){
 
 // Calling
 // refinedSearch(songSearch);
-
 // youtubeSearch(testRequest);
