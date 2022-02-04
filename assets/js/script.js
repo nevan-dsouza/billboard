@@ -120,6 +120,7 @@ function printResults(resultObj) {
 
   var searchResultHeading = document.getElementById('result-header-text');
   searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
+
   //searchResultHeading.append(resultContentEl); 
 
 
