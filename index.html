@@ -34,7 +34,7 @@
         
             <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end menu">
-                <a class="navbar-item">
+                <a class="navbar-item" href="#result-header">
                 charts
                 </a>
         
@@ -63,13 +63,16 @@
         </nav>
 
         <!-- Search Bar -->
-        <form class="(insert classes here)" id="search-form">
-            <input list="countries" class="nothing" id="input-country" placeholder="Canada">
-            <datalist id="countries">
+        <h1 class="container has-text-centered pt-6 title">Search for a Country's Top 20!</h1>
+        <div class="container has-text-centered pt-3 pb-6 field">
+         <form class="control" id="search-form">
+            <input list="countries" class="input" id="input-country" placeholder="Canada">
+                <datalist id="countries">
     
-            </datalist>
-            <button type="submit" class="nothing"><span class="fas fa-search"></span></button>
-        </form>
+                </datalist>
+            <button type="submit" class="button has-text-light"><span class="fas fa-search"></span></button>
+         </form>
+        </div>
 
         <!-- <form action="#" id="form"></form>
             <div id="artist-search">
@@ -78,15 +81,15 @@
         </form> -->
 
         <!-- YouTube Video Display -->
-        <section class="youtube-video-container"></section>
+        <section class="youtube-video-container has-text-centered"></section>
 
         <!-- Search Result Display -->
-        <div id="result-content"></div>
-
-
-
-
-
+        <div class="container mt-4 has-text-dark" id="result-header">
+            <h2 id="result-header-text"></h2>
+        </div>
+        <ol>
+        <div class="container has-text-centered is-hidden is-mobile" id="result-content"></div>
+        </ol>
 
 
         <script src="https://kit.fontawesome.com/d3f55370ae.js" crossorigin="anonymous"></script>
@@ -100,5 +103,6 @@
         
     </body>
     
+
 
 </html>

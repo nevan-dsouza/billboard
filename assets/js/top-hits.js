@@ -9,7 +9,10 @@ var videos = $()
 // Functions
 // Search Manipulation Function
 function refinedSearch(event){
-    let search = event.target.textContent;
+
+    //get the value from the event.target.textContent
+    let search = event.target.textContent
+
     let searchList = search.split(' ');
     console.log(searchList); 
     let song = '';
@@ -60,7 +63,7 @@ function displayVideo(video, videoID){
         videoContainer.innerHTML += `
 
         <div class="video-display">
-        <a href="https://www.youtube.com/watch?v=${videoID}"><img src= "${video.snippet.thumbnails.medium.url}" height="315" width="420"></img></a>
+        <a href="https://www.youtube.com/watch?v=${videoID}"><img src= "${video.snippet.thumbnails.medium.url}" height="450" width="600"></img></a>
         <figcaption>${video.snippet.title}</figcaption>
         </div>
         `;
