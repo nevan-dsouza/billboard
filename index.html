@@ -34,7 +34,7 @@
         
             <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end menu">
-                <a class="navbar-item">
+                <a class="navbar-item" href="#result-header">
                 charts
                 </a>
         
@@ -64,13 +64,13 @@
 
         <!-- Search Bar -->
         <h1 class="container has-text-centered pt-6 title">Search for a Country's Top 20!</h1>
-        <div class="container has-text-centered pt-3 pb-6">
-         <form class="button" id="search-form">
-            <input list="countries" class="nothing" id="input-country" placeholder="Canada">
+        <div class="container has-text-centered pt-3 pb-6 field">
+         <form class="control" id="search-form">
+            <input list="countries" class="input" id="input-country" placeholder="Canada">
                 <datalist id="countries">
     
                 </datalist>
-            <button type="submit" class="nothing"><span class="fas fa-search"></span></button>
+            <button type="submit" class="button has-text-light"><span class="fas fa-search"></span></button>
          </form>
         </div>
 
@@ -84,8 +84,12 @@
         <section class="youtube-video-container has-text-centered"></section>
 
         <!-- Search Result Display -->
+
+        <div class="container mt-4 has-text-dark" id="result-header">
+            <h2 id="result-header-text"></h2>
+        </div>
         <ol>
-        <div class="container has-text-centered is-hidden" id="result-content"></div>
+        <div class="container has-text-centered is-hidden is-mobile" id="result-content"></div>
         </ol>
 
 
@@ -100,5 +104,6 @@
         
     </body>
     
+
 
 </html>

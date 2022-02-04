@@ -3,6 +3,7 @@ var super_array = [];
 var resultTextEl = document.querySelector('#result-text');
 var resultContentEl = document.querySelector('#result-content');
 var lastCountry = localStorage.getItem("last_country");
+var musicApiKey = "4d2455ebb8688fed8a2c85f0ac87b164";
 
 // This function clears a list of child elements within an element
 function clearList(element) {
@@ -70,7 +71,7 @@ function handleSubmit(event) {
 
 function renderTrackList(countryName) {
     var countryCode = findCodeByCountry(countryName);
-  
+    
 
     clearList($("#result-content"));
 
@@ -80,7 +81,7 @@ function renderTrackList(countryName) {
     
 
     // fetch request gets a list of all the repos for the node.js organization
-    var requestUrl = "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=20&country=" + countryCode + "&f_has_lyrics=1&apikey=360b2a0f11a6cde52497da911bf19fb1";
+    var requestUrl = "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=20&country=" + countryCode + "&f_has_lyrics=1&apikey=" + musicApiKey;
     
   
     fetch(requestUrl, { mode: 'cors',
@@ -117,8 +118,9 @@ function printResults(resultObj) {
   var bodyContentEl = document.createElement('p');
   var linkButtonEl = document.createElement('a');
 
-  //var searchResultHeading = document.createElement('h2');
-  //searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
+  var searchResultHeading = document.getElementById('result-header-text');
+  searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
+
   //searchResultHeading.append(resultContentEl); 
 
 
@@ -130,7 +132,6 @@ function printResults(resultObj) {
 
   titleEl.textContent = resultObj.track_name;
   titleEl.addEventListener('click', refinedSearch);
-
   bodyContentEl.innerHTML =
     '<strong>Artist:</strong> ' + resultObj.artist_name + '<br/>';
 

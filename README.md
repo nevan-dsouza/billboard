@@ -1,3 +1,4 @@
+
 # Project 1: Billboard Search App
 
 ## Description
@@ -36,3 +37,4 @@ SO THAT I can see what kind of music is popular for a country of my choosing
  Potential features can include:
  * Filters for searching (artist, genre, etc.)
  * Displaying top artists on the page alonside the top songs
+

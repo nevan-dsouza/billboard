@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 .navbar{
     padding: 10px;
     background-color: #6717D0;    
@@ -37,7 +41,7 @@ img{
 }
 
 figcaption{
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .cardcustom {
@@ -61,5 +65,22 @@ figcaption{
 
 #result-content {
     margin:auto;
-    width: 40%; 
+    width: 700px; 
+}
+
+#result-header-text{
+    text-align: center;
+    font-size: 1.4rem;
+
+}
+
+.button{
+    background-color: #6717D0;
+}
+
+#search-form{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
 }
