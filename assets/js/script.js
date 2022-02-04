@@ -53,12 +53,15 @@ function handleSubmit(event) {
     // To prevent the page from reloading...
     event.preventDefault();
 
+
     // Get country's name from the search bar
     var countryName = $("#input-country").val().trim();
 
+    $("#result-content").removeClass("is-hidden");
+
     // clearList($("#result-content"));
     // Turns search box empty after submitting
-    $("#input-country").val("");
+    // $("#input-country").val("");
     // Add the country to our search history
     addCountrytoHistory(countryName);
     // Render the country's weather
@@ -94,6 +97,7 @@ function renderTrackList(countryName) {
         for (var i = 0; i < 20; i++) {
           printResults(data.message.body.track_list[i].track);
         }
+        $("#result-content").removeClass("is-hidden");
   });
 }
 
@@ -104,12 +108,19 @@ function renderTrackList(countryName) {
 function printResults(resultObj) {
   console.log(resultObj);
 
+
   // set up `<div>` to hold result content
-  var resultCard = document.createElement('div');
+ 
+  var resultCard = document.createElement('li');
   var resultBody = document.createElement('div');
   var titleEl = document.createElement('h3');
   var bodyContentEl = document.createElement('p');
   var linkButtonEl = document.createElement('a');
+
+  //var searchResultHeading = document.createElement('h2');
+  //searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
+  //searchResultHeading.append(resultContentEl); 
+
 
 
   resultCard.classList.add('cardcustom');
@@ -139,4 +150,7 @@ function printResults(resultObj) {
 
 console.log(findCodeByCountry("Afghanistan"));
 $("#search-form").on("submit", handleSubmit);
-renderTrackList(lastCountry);
+if (lastCountry) {
+    renderTrackList (lastCountry);
+}
+
