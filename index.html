@@ -84,13 +84,25 @@
         <section class="youtube-video-container has-text-centered"></section>
 
         <!-- Search Result Display -->
-
         <div class="container mt-4 has-text-dark" id="result-header">
             <h2 id="result-header-text"></h2>
         </div>
         <ol>
         <div class="container has-text-centered is-hidden is-mobile" id="result-content"></div>
         </ol>
+
+        <!-- Search error modal -->
+        <div id="error-window" class="modal">
+            <div class="modal-background"></div>
+          
+            <div class="modal-content">
+              <div class="box">
+                <p>Please enter a valid country.</p>
+              </div>
+            </div>
+          
+            <button id="close-modal" class="modal-close is-large" aria-label="close"></button>
+        </div>
 
 
         <script src="https://kit.fontawesome.com/d3f55370ae.js" crossorigin="anonymous"></script>

@@ -44,6 +44,10 @@ figcaption{
     font-size: 1.1rem;
 }
 
+.button{
+    background-color: #6717D0;
+}
+
 .cardcustom {
     border-left: #6717D0;
     border-right: #6717D0;
@@ -71,10 +75,6 @@ figcaption{
 #result-header-text{
     text-align: center;
     font-size: 1.4rem;
-}
-
-.button{
-    background-color: #6717D0;
 }
 
 #search-form{
