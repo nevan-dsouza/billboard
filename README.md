@@ -50,7 +50,7 @@ We wanted to integrate Youtube and Top Charts/Lyrics in one convenient way.
 * Code storage of last searched item and display it the next time user visits website
 * Code modal window giving error if user does not input a valid country name
 
-## Potentual Future Features
+## Potential Future Features
 
  Potential features can include:
  * Filters for searching (artist, genre, etc.)
