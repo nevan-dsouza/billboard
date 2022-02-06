@@ -16,12 +16,12 @@ function clearList(element) {
     console.log("List cleared!");
 }
 
-// Load last country from local storage
-
+// If last country doesnt exist, return as an empty string.
 if (!lastCountry) {
     lastCountry = "";
 }
 
+// input country name, return country code (using array from country.js)
 function findCodeByCountry(countryName) {
     var foundCountry = country.find(function (el) {
         return el.name.toLowerCase() === countryName.toLowerCase();
@@ -58,19 +58,34 @@ function handleSubmit(event) {
     // Get country's name from the search bar
     var countryName = $("#input-country").val().trim();
 
-    $("#result-content").removeClass("is-hidden");
+    // Render the country's top 20 music list
+    var foundCountry = country.find(function (el) {
+        return el.name.toLowerCase() === countryName.toLowerCase();
+        });
 
-    // clearList($("#result-content"));
-    // Turns search box empty after submitting
-    // $("#input-country").val("");
-    // Add the country to our search history
-    addCountrytoHistory(countryName);
-    // Render the country's weather
-    renderTrackList(countryName);
+    // If user inputs a valid country name...
+    if (foundCountry !== undefined) {
+        // Add the country to our search history
+        addCountrytoHistory(countryName);
+        // Display search results and hide previous youtube link
+        $("#result-content").removeClass("is-hidden");
+        clearList($('.youtube-video-container'));
+        return renderTrackList(countryName);
+
+    // If user does not input a valid country name...
+    } else {
+        $("#error-window").addClass("is-active");
+        // Turns search box empty after submitting
+        $("#input-country").val("");
+        return;
+    }
 }
 
+// Fetches API data then calls the printResult function alongside other things
 function renderTrackList(countryName) {
     var countryCode = findCodeByCountry(countryName);
+    var searchResultHeading = document.getElementById('result-header-text');
+
     
 
     clearList($("#result-content"));
@@ -86,44 +101,42 @@ function renderTrackList(countryName) {
   
     fetch(requestUrl, { mode: 'cors',
     "Access-Control-Allow-Origin" : "*"})
-  
-   
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
         console.log(data);
         console.log(data.message.body.track_list[0].track.track_name);
+
         var idarray = [];
+
+        // Make a for loop to print results for the 20 songs in the array
         for (var i = 0; i < 20; i++) {
           printResults(data.message.body.track_list[i].track);
         }
+
+        // Reveal the container with the song list
         $("#result-content").removeClass("is-hidden");
+
+        searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
+
+        // Turns search box empty after submitting
+        // $("#input-country").val("");
   });
 }
 
 
 
-// console.log(resultTextEl);
-
+// Displays top 20 songs and other things
 function printResults(resultObj) {
   console.log(resultObj);
 
-
   // set up `<div>` to hold result content
- 
   var resultCard = document.createElement('li');
   var resultBody = document.createElement('div');
   var titleEl = document.createElement('h3');
   var bodyContentEl = document.createElement('p');
   var linkButtonEl = document.createElement('a');
-
-  var searchResultHeading = document.getElementById('result-header-text');
-  searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
-
-  //searchResultHeading.append(resultContentEl); 
-
-
 
   resultCard.classList.add('cardcustom');
 
@@ -149,8 +162,20 @@ function printResults(resultObj) {
   resultContentEl.append(resultCard);
 }
 
-console.log(findCodeByCountry("Afghanistan"));
+// Function to close modal window
+function closeWindow() {
+    var modalEle = $("#error-window");
+    modalEle.removeClass("is-active");
+}
+
+// Event handler for submit button
 $("#search-form").on("submit", handleSubmit);
+
+// Event handler for search error modal window
+$(".modal-background").on("click", closeWindow);
+$("#close-modal").on("click", closeWindow);
+
+// Load last country from local storage and automatically display last searched results
 if (lastCountry) {
     renderTrackList (lastCountry);
 }

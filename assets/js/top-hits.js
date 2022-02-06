@@ -63,7 +63,7 @@ function displayVideo(video, videoID){
         videoContainer.innerHTML += `
 
         <div class="video-display">
-        <a href="https://www.youtube.com/watch?v=${videoID}"><img src= "${video.snippet.thumbnails.medium.url}" height="450" width="600"></img></a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=${videoID}"><img src= "${video.snippet.thumbnails.medium.url}" height="450" width="600"></img></a>
         <figcaption>${video.snippet.title}</figcaption>
         </div>
         `;
