@@ -16,11 +16,6 @@ function clearList(element) {
     console.log("List cleared!");
 }
 
-// If last country doesnt exist, return as an empty string.
-if (!lastCountry) {
-    lastCountry = "";
-}
-
 // input country name, return country code (using array from country.js)
 function findCodeByCountry(countryName) {
     var foundCountry = country.find(function (el) {
@@ -118,7 +113,7 @@ function renderTrackList(countryName) {
         // Reveal the container with the song list
         $("#result-content").removeClass("is-hidden");
 
-        searchResultHeading.textContent = "Top 20 Songs in " + $("#input-country").val() + ":";
+        searchResultHeading.textContent = "Top 20 Songs in " + lastCountry + ":";
 
         // Turns search box empty after submitting
         // $("#input-country").val("");
